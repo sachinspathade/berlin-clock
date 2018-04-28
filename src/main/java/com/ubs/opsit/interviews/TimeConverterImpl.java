@@ -76,11 +76,13 @@ public class TimeConverterImpl implements TimeConverter,TimeConstants {
 		StringBuffer mins= new StringBuffer();
 		Integer MINUTES = Integer.parseInt(minutes);
 		int x = MINUTES/5;
+		int counter =0;
 		if(x==0) {
 			mins.append(DEFAULT_MINS_ROW);
 		}else{
 			while(x!=0) {
-				if(x%3==0) {//evaluate quarter of hour
+				counter++;
+				if(counter%3==0) {//evaluate quarter of hour
 					mins.append(RED);
 				}else {
 					mins.append(YELLOW);
