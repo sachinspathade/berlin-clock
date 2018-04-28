@@ -1,9 +1,6 @@
 package com.ubs.opsit.interviews.support;
 
-import org.apache.commons.io.filefilter.DirectoryFileFilter;
-import org.apache.commons.io.filefilter.WildcardFileFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import static org.apache.commons.io.FileUtils.listFiles;
 
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +10,10 @@ import java.util.Collection;
 import java.util.Enumeration;
 import java.util.List;
 
-import static org.apache.commons.io.FileUtils.listFiles;
+import org.apache.commons.io.filefilter.DirectoryFileFilter;
+import org.apache.commons.io.filefilter.WildcardFileFilter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A class to help us find stories (files) across a classpath with many roots.  This is especially important
@@ -32,6 +32,8 @@ public final class ClasspathStoryFinder {
 
     private static Collection<File> findFilesThatMatch(String aFilenameWithWildcards) {
         WildcardFileFilter regexFileFilter = new WildcardFileFilter(aFilenameWithWildcards);
+       /* File file = new File("C:\\Mphasis\\Berlinclock\\git\\berlin-clock\\src\\test\\resources\\stories");
+		List<File> rootDirsToSearchFrom = Lists.newArrayList(file);*/
         List<File> rootDirsToSearchFrom = getRootDirs();
         LOG.info("Searching for stories called [{}] in [{}]", aFilenameWithWildcards, rootDirsToSearchFrom);
 
@@ -45,7 +47,7 @@ public final class ClasspathStoryFinder {
     private static List<File> getRootDirs() {
         List<File> ret = new ArrayList<File>() ;
         try {
-            Enumeration<URL> roots = ClasspathStoryFinder.class.getClassLoader().getResources("") ;
+            Enumeration<URL> roots = ClasspathStoryFinder.class.getClassLoader().getResources("stories") ;
             while(roots.hasMoreElements()) {
                 ret.add(new File(roots.nextElement().getFile())) ;
             }
