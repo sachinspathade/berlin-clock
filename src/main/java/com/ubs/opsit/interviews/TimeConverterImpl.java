@@ -21,13 +21,6 @@ public class TimeConverterImpl implements TimeConverter,TimeConstants {
 		finalClock.append(evaluateThirdRow(aTime.substring(0,2)));				finalClock.append(System.lineSeparator());
 		finalClock.append(evaluateFourthRow(aTime.substring(3,5)));				finalClock.append(System.lineSeparator());
 		finalClock.append(evaluateLastRow(aTime.substring(3,5)));
-//		aTime = aTime +System.lineSeparator();
-		/*String finalClock = aTime;
-		finalClock="Y" +System.lineSeparator();
-		finalClock = finalClock +"OOOO"+System.lineSeparator();
-		finalClock = finalClock +"OOOO"+System.lineSeparator();
-		finalClock = finalClock +"OOOOOOOOOOO"+System.lineSeparator();
-		finalClock = finalClock +"OOOO";*/
 		
 		return finalClock.toString();
 	}
